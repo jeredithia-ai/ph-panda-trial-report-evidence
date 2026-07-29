@@ -416,6 +416,7 @@ let activePhaseKey = "before";
 const mediaStore = {};
 const MEDIA_STORAGE_KEY = "ph-panda-media-store-v1";
 const MAX_PERSIST_IMAGE_BYTES = 1024 * 1024 * 1.5;
+// Keep storage under common browser quotas for reliable persistence.
 const MAX_STORAGE_CHARS = 4_000_000;
 
 function evidenceUploader(zone, label) {
