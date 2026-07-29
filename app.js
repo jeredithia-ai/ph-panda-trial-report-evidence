@@ -321,7 +321,7 @@ const systemPunchlines = [
 
 const benchmarkEvidence = [
   { zone: "bp-polly-app", label: "Polly APP 页面设计（引导强）" },
-  { zone: "bp-post-resource", label: "竞品课后资源（Fengguofu）" },
+  { zone: "bp-post-resource", label: "竞品课后资源（绘本+单词+音频）" },
   { zone: "bp-parent-report", label: "家长信息回收与客户报告素材（含建议模板）" }
 ];
 
@@ -339,7 +339,7 @@ const compareMatrix = {
     {
       name: "Power Up",
       cells: [
-        { key: "ph-pu", value: "11.34%", tone: "mid" },
+        null,
         { key: "eu-pu", value: "13.74%", tone: "mid" },
         { key: "na-pu", value: "12.11%", tone: "mid" }
       ]
@@ -428,10 +428,19 @@ function evidenceUploader(zone, label) {
         <button class="u-btn save" type="button" data-action="save-zone" data-zone="${zone}">保存</button>
         <button class="u-btn danger" type="button" data-action="clear-zone">删除</button>
       </div>
+      <div class="link-compose edit-only">
+        <input class="link-input" type="text" data-link-url placeholder="粘贴网页链接（https://...）" />
+        <input class="link-input" type="text" data-link-title placeholder="链接标题（可选）" />
+        <button class="u-btn" type="button" data-action="add-link">添加链接</button>
+      </div>
       <p class="save-tip edit-only" id="save-tip-${zone}">未保存</p>
       <input class="hidden-input edit-only" type="file" accept="image/*" multiple data-kind="image" />
       <input class="hidden-input edit-only" type="file" accept="video/*" multiple data-kind="video" />
       <div class="preview media-block">
+        <section class="media-section" data-media-section="link">
+          <div class="media-sub-title">网页链接</div>
+          <div class="media-gallery" id="gallery-link-${zone}"></div>
+        </section>
         <section class="media-section" data-media-section="image">
           <div class="media-sub-title">图片</div>
           <div class="media-gallery" id="gallery-image-${zone}"></div>
@@ -477,7 +486,7 @@ function loadMediaStore() {
     Object.keys(parsed).forEach((zone) => {
       const items = Array.isArray(parsed[zone]) ? parsed[zone] : [];
       mediaStore[zone] = items
-        .filter((x) => x && (x.type === "image" || x.type === "video") && typeof x.src === "string")
+        .filter((x) => x && (x.type === "image" || x.type === "video" || x.type === "link") && typeof x.src === "string")
         .map((x) => ({ ...x, persistable: true }));
     });
   } catch (_err) {
@@ -486,10 +495,12 @@ function loadMediaStore() {
 }
 
 function renderGallery(zone) {
+  const linkGallery = document.getElementById(`gallery-link-${zone}`);
   const imageGallery = document.getElementById(`gallery-image-${zone}`);
   const videoGallery = document.getElementById(`gallery-video-${zone}`);
-  if (!imageGallery || !videoGallery) return;
+  if (!linkGallery || !imageGallery || !videoGallery) return;
   const evidenceRoot = imageGallery.closest("[data-media-zone]");
+  const linkSection = linkGallery.closest("[data-media-section='link']");
   const imageSection = imageGallery.closest("[data-media-section='image']");
   const videoSection = videoGallery.closest("[data-media-section='video']");
 
@@ -501,6 +512,23 @@ function renderGallery(zone) {
   const videos = list
     .map((item, idx) => ({ item, idx }))
     .filter((x) => x.item.type === "video");
+  const links = list
+    .map((item, idx) => ({ item, idx }))
+    .filter((x) => x.item.type === "link");
+
+  linkGallery.innerHTML = links.length
+    ? links
+        .map(
+          ({ item, idx }) => `
+      <article class="media-link-item">
+        <a class="link-preview-btn" href="${item.src}" target="_blank" rel="noopener noreferrer">打开网页</a>
+        <span class="media-link-label">${item.name}</span>
+        <button type="button" class="remove-btn" data-action="remove-item" data-zone="${zone}" data-idx="${idx}">删</button>
+      </article>
+    `
+        )
+        .join("")
+    : "";
 
   imageGallery.innerHTML = images.length
     ? images
@@ -530,6 +558,9 @@ function renderGallery(zone) {
         .join("")
     : "";
 
+  if (linkSection) {
+    linkSection.classList.toggle("hidden-empty", !editMode && links.length === 0);
+  }
   if (imageSection) {
     imageSection.classList.toggle("hidden-empty", !editMode && images.length === 0);
   }
@@ -549,6 +580,32 @@ function fileToDataUrl(file) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+
+function normalizeUrl(raw) {
+  const text = String(raw || "").trim();
+  if (!text) return "";
+  if (/^https?:\/\//i.test(text)) return text;
+  return `https://${text}`;
+}
+
+function addLink(zone, card) {
+  if (!mediaStore[zone]) mediaStore[zone] = [];
+  const rawUrl = card?.querySelector("[data-link-url]")?.value || "";
+  const href = normalizeUrl(rawUrl);
+  if (!href) {
+    markZoneSaved(zone, "链接为空，未添加");
+    return;
+  }
+  const title = card?.querySelector("[data-link-title]")?.value?.trim() || href;
+  mediaStore[zone].push({ type: "link", name: title, src: href, persistable: true });
+  const urlInput = card?.querySelector("[data-link-url]");
+  const titleInput = card?.querySelector("[data-link-title]");
+  if (urlInput) urlInput.value = "";
+  if (titleInput) titleInput.value = "";
+  saveMediaStore();
+  renderGallery(zone);
+  markZoneSaved(zone, "已自动保存");
 }
 
 async function appendFiles(zone, files, type) {
@@ -626,7 +683,7 @@ function getLightboxApi() {
           <img class="lightbox-media" src="${src}" alt="放大" />
         </div>
       `;
-      applyZoom(2);
+      applyZoom(1);
     }
     lightbox.classList.add("show");
     lightbox.setAttribute("aria-hidden", "false");
@@ -1238,6 +1295,7 @@ function setupInteraction() {
       if (!zone) return;
       if (btn.dataset.action === "pick-image") card.querySelector("input[data-kind='image']")?.click();
       if (btn.dataset.action === "pick-video") card.querySelector("input[data-kind='video']")?.click();
+      if (btn.dataset.action === "add-link") addLink(zone, card);
       if (btn.dataset.action === "save-zone") {
         saveMediaStore();
         markZoneSaved(zone, "已保存");

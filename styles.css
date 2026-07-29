@@ -1350,6 +1350,23 @@ body.edit-mode .edit-only { display: block; }
   flex-wrap: wrap;
 }
 
+.link-compose {
+  margin-top: 6px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr auto;
+  gap: 6px;
+}
+
+.link-input {
+  border: 1px solid #c9d9ff;
+  border-radius: 8px;
+  background: #fff;
+  color: #2d477f;
+  font-size: 12px;
+  padding: 6px 8px;
+  min-width: 0;
+}
+
 .u-btn {
   border: 1px solid #b8cbff;
   border-radius: 999px;
@@ -1531,7 +1548,7 @@ body.edit-mode .edit-only { display: block; }
   display: none;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 20, 42, 0.78);
+  background: rgba(10, 20, 42, 0.66);
   z-index: 50;
   padding: 16px;
 }
@@ -1539,8 +1556,8 @@ body.edit-mode .edit-only { display: block; }
 .lightbox.show { display: flex; }
 
 .lightbox-body {
-  width: min(1400px, 96vw);
-  height: min(92vh, 1100px);
+  width: min(1180px, 96vw);
+  height: min(88vh, 980px);
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 8px;
@@ -1578,11 +1595,12 @@ body.edit-mode .edit-only { display: block; }
 }
 
 .lightbox-scroll {
-  border: 1px solid #294a91;
+  border: 1px solid #d6e3ff;
   border-radius: 12px;
-  background: rgba(8, 16, 34, 0.76);
+  background: #f7faff;
   overflow: auto;
-  padding: 14px;
+  padding: 10px;
+  text-align: center;
 }
 
 .lightbox-body > .lightbox-scroll:only-child {
@@ -1643,18 +1661,18 @@ body.edit-mode .edit-only { display: block; }
 
 .lightbox-body img,
 .lightbox-body video {
-  max-width: none;
-  max-height: none;
+  max-width: 100%;
+  max-height: calc(88vh - 130px);
   border-radius: 12px;
 }
 
 .lightbox-media {
-  transform-origin: top left;
+  transform-origin: top center;
   will-change: transform;
 }
 
 .lightbox-scroll video {
-  width: min(1200px, 92vw);
+  width: min(100%, 1100px);
   height: auto;
 }
 
@@ -1719,6 +1737,10 @@ body.edit-mode .edit-only { display: block; }
     flex-wrap: wrap;
     white-space: normal;
     font-size: clamp(20px, 5.6vw, 30px);
+  }
+
+  .link-compose {
+    grid-template-columns: 1fr;
   }
 
   .tiny-note,
