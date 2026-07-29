@@ -1,48 +1,223 @@
-<!DOCTYPE html>\n<html lang="zh-CN"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PH（Panda）试听专项</title>
-<style>
-:root{--navy:#102a54;--blue:#4b63e6;--purple:#5b4be6;--cyan:#47c4d8;--orange:#f29130;--red:#cf3f46;--green:#34a66a;--bg:#f6f8fd;--card:#fff;--line:#dfe7f5;--muted:#5d6678;--shadow:0 16px 38px rgba(16,42,84,.11)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#f7f9ff 0%,#eef4fb 100%);color:var(--navy);font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Segoe UI",Arial,sans-serif}.wrap{max-width:1440px;margin:0 auto;padding:108px 32px 56px}.topbar{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1380px,calc(100% - 48px));z-index:900;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 18px;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.brand{display:flex;align-items:center;gap:16px}.logoText{height:42px;min-width:128px;border-radius:10px;background:linear-gradient(135deg,#4b63e6,#5b4be6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:21px;font-weight:900;letter-spacing:-.03em}.title h1{font-size:23px;line-height:1.1;margin:0;font-weight:900}.title p{margin:6px 0 0;font-size:13px;color:var(--muted);font-weight:700}.statusPill,.saveBtn{padding:10px 14px;border-radius:999px;background:#eef3ff;border:1px solid #dce5fb;font-size:13px;font-weight:800;color:var(--blue)}.saveBtn{cursor:pointer;font-family:inherit}.sideNav{position:fixed;top:150px;left:18px;z-index:1000;display:flex;flex-direction:column;gap:9px;padding:12px;background:rgba(255,255,255,.93);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);cursor:grab;user-select:none}.sideNav.dragging{cursor:grabbing}.sideNav a{text-decoration:none;color:var(--navy);font-size:13px;font-weight:850;padding:10px 13px;border-radius:999px;background:#f4f7ff;border:1px solid #e2e9f8;white-space:nowrap}.sideNav a:hover{background:#e9efff;color:var(--blue)}.navToggle{width:42px;height:38px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--blue);font-size:18px;font-weight:900;cursor:pointer}.sideNav.collapsed a{display:none}section{margin:24px 0;padding:28px;background:rgba(255,255,255,.91);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow)}.sectionHead{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px}.hgroup{display:flex;align-items:center;gap:14px}.badge{height:34px;min-width:44px;padding:0 10px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900}h2{margin:0;font-size:24px;line-height:1.18;font-weight:900}.sub{color:var(--muted);font-size:13px;font-weight:650;line-height:1.5}.line{width:260px;height:5px;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--purple));margin:12px 0 0}.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 10px 24px rgba(16,42,84,.07)}.card h3{margin:0 0 10px;font-size:18px;font-weight:900}.card p,.card li{font-size:14px;line-height:1.62;color:#344057;font-weight:400}.card ul,.card ol{margin:8px 0 0;padding-left:20px}.goalStrip{display:grid;grid-template-columns:1.25fr .82fr .82fr .82fr;gap:14px}.goalItem{border:1px solid var(--line);border-radius:22px;background:#f5f8ff;padding:16px;display:flex;align-items:center;gap:12px;min-height:108px}.goalItem:first-child{background:linear-gradient(135deg,#fff4e8,#fff);border-color:#f4d1a7}.goalNum{font-size:34px;line-height:1;font-weight:950;color:var(--blue);white-space:nowrap}.goalItem:first-child .goalNum{font-size:46px;color:var(--orange)}.goalText strong{display:block;font-size:15px;margin-bottom:5px}.goalText span{display:block;color:var(--muted);font-size:12px;font-weight:650;line-height:1.35}.valueGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.valueGrid .card:first-child{background:#f5f8ff}.valueGrid .card:last-child{background:#fff8ec}.risk{border-left:6px solid var(--red);background:#fff6f5;color:#9e272d;padding:16px 18px;border-radius:16px;font-size:15px;line-height:1.6;font-weight:500}.strategy{border-left:6px solid var(--green);background:#f0fbf5;color:#1f6d43;padding:16px 18px;border-radius:16px;font-size:15px;line-height:1.6;font-weight:500}.dataGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.matrix{width:100%;border-collapse:separate;border-spacing:0 10px}.matrix th{font-size:12px;color:var(--muted);text-align:left;padding:0 12px}.matrix td{background:#f8faff;border-top:1px solid #e3eaf8;border-bottom:1px solid #e3eaf8;padding:13px 12px;font-size:14px;font-weight:800;cursor:pointer}.matrix td:first-child{border-left:1px solid #e3eaf8;border-radius:14px 0 0 14px;cursor:default}.matrix td:last-child{border-right:1px solid #e3eaf8;border-radius:0 14px 14px 0}.matrix td.active{outline:2px solid var(--blue);background:#eef3ff}.score{display:inline-flex;padding:6px 10px;border-radius:999px;font-weight:900}.low{background:#ffe5e3;color:#b63235}.watch{background:#fff0c8;color:#9b6500}.good{background:#dbf5e5;color:#207842}.empty{background:#eef1f6;color:#707887}.detailCard{border-radius:24px;border:1px solid var(--line);background:#fff;padding:22px;min-height:360px}.detailCard h3{margin:0 0 10px;font-size:22px}.detailRate{font-size:46px;font-weight:950;color:var(--blue);line-height:1;margin:12px 0}.detailStatus{display:inline-flex;border-radius:999px;padding:7px 12px;font-weight:900;font-size:13px;margin-bottom:12px}.detailStatus.low{background:#ffe5e3;color:#b63235}.detailStatus.watch{background:#fff0c8;color:#9b6500}.detailStatus.good{background:#dbf5e5;color:#207842}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.tabBtn{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px 14px;text-align:left;cursor:pointer;box-shadow:0 8px 18px rgba(16,42,84,.06)}.tabBtn strong{display:block;font-size:16px;color:var(--navy);margin-bottom:4px}.tabBtn span{font-size:12px;color:var(--muted)}.tabBtn.active{background:linear-gradient(135deg,#eef3ff,#f8fbff);border-color:#bfcdfb;box-shadow:0 12px 26px rgba(75,99,230,.16)}.panel{display:none}.panel.active{display:grid;grid-template-columns:.95fr 1.05fr 1fr;gap:16px}.panel .box{border-radius:22px;border:1px solid var(--line);padding:18px;background:#fff}.panel .box:nth-child(1){background:#f5f8ff}.panel .box:nth-child(2){background:#fff8ec}.panel .box:nth-child(3){background:#effaf4}.miniEvidence{margin-top:12px;border-top:1px dashed #c7d4ef;padding-top:12px}.miniEvidence label{display:inline-flex;border-radius:999px;background:#eef3ff;color:var(--blue);font-size:12px;font-weight:900;padding:7px 11px;cursor:pointer}.miniEvidence input{display:none}.preview{margin-top:10px;min-height:52px;border:1px dashed #c4d3ee;border-radius:14px;background:#fbfdff;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;overflow:hidden;cursor:pointer}.mediaHolder{position:relative;width:100%;display:flex;align-items:center;justify-content:center}.preview img,.preview video{max-width:100%;max-height:120px;border-radius:10px}.clearMedia{position:absolute;top:6px;right:6px;border:none;border-radius:999px;background:rgba(207,63,70,.92);color:#fff;font-size:11px;font-weight:900;padding:5px 8px;cursor:pointer;z-index:2}.mediaModal{position:fixed;inset:0;background:rgba(16,42,84,.72);z-index:3000;display:none;align-items:center;justify-content:center;padding:34px}.mediaModal.active{display:flex}.modalInner{position:relative;width:min(1180px,94vw);height:min(760px,88vh);background:#fff;border-radius:24px;padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.32);display:flex;align-items:center;justify-content:center}#modalContent{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.modalInner img{max-width:100%;max-height:100%;object-fit:contain;border-radius:16px}.modalInner video{width:100%;height:100%;object-fit:contain;border-radius:16px;background:#111}.modalClose{position:absolute;top:-16px;right:-16px;width:40px;height:40px;border:none;border-radius:50%;background:#fff;color:var(--navy);font-size:22px;font-weight:900;box-shadow:0 8px 24px rgba(0,0,0,.2);cursor:pointer;z-index:2}.decision{display:grid;grid-template-columns:1fr 1fr;gap:18px}.ok{background:#f0fbf5;border-color:#d0f0dc}.warn{background:#fff8ec;border-color:#f5dfb7}.bad{background:#fff4f4;border-color:#f1cece}.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.timeCard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;position:relative}.timeCard::before{content:'';width:22px;height:22px;border-radius:50%;background:var(--blue);position:absolute;top:-11px;left:24px;border:4px solid #fff;box-shadow:0 0 0 1px var(--line)}.timeCard:nth-child(2)::before{background:var(--orange)}.timeCard:nth-child(3)::before{background:var(--green)}.timeCard h3{margin:6px 0 10px;font-size:18px}.timeRange{display:inline-flex;margin-bottom:8px;border-radius:999px;background:#eef3ff;color:var(--blue);font-weight:900;font-size:12px;padding:6px 10px}@media(max-width:1100px){.goalStrip,.valueGrid,.dataGrid,.tabs,.panel.active,.decision,.timeline{grid-template-columns:1fr}.wrap{padding:128px 18px 42px}.statusPill{display:none}}
-</style>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PH Panda 试听专项 - 管理汇报初稿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="topbar"><div class="brand"><div class="logoText">LingoAce</div><div class="title"><h1>PH（Panda）试听专项</h1><p>目标 +2pp｜PU 承接评估</p></div></div><button class="saveBtn" id="savePage" type="button">保存数据+素材版本</button></header>
-<nav class="sideNav collapsed" id="sideNav"><button class="navToggle" id="navToggle" type="button">☰</button><a href="#goal">Goal</a><a href="#data">数据</a><a href="#diagnosis">四维诊断</a><a href="#pu">PU</a><a href="#timeline">Timeline</a></nav>
-<main class="wrap">
-<section id="goal"><div class="sectionHead"><div><div class="hgroup"><span class="badge">01</span><h2>Goal：提升 PH（Panda）试听价值与转化效率</h2></div><div class="line"></div></div><p class="sub">PH（Panda）= 中国市场 Panda 项目下的菲教试听口径。</p></div><div class="goalStrip"><div class="goalItem"><div class="goalNum">+2pp</div><div class="goalText"><strong>Panda 试听转化目标</strong><span>从约 7.30%-8% 提升至 10%+</span></div></div><div class="goalItem"><div class="goalNum">30-40</div><div class="goalText"><strong>超高性价比</strong><span>RMB/课，适合长期练习</span></div></div><div class="goalItem"><div class="goalNum">灵活</div><div class="goalText"><strong>课消灵活</strong><span>随时上课，随时划课时</span></div></div><div class="goalItem"><div class="goalNum">真人</div><div class="goalText"><strong>即时反馈</strong><span>相比 AI / 录播，能现场纠正</span></div></div></div><div class="valueGrid"><div class="card"><h3>我们已经有的优势</h3><ol><li>PH 是当前最具价格优势的真人外教练习方案。</li><li>无固定课消，家长选择风险更低。</li><li>有中教答疑或双师服务承接。</li><li>真人老师能在 25 分钟内即时纠正和回应孩子。</li></ol></div><div class="card"><h3>还没有被包装成卖点的价值</h3><ol><li>家长关心的不是“便宜”，而是 25 分钟是否有效。</li><li>老师是否持续关注孩子有没有理解。</li><li>老师能否让孩子说得更多、更准。</li><li>课堂不能只是音乐、游戏和热闹感，而要让孩子真实练习。</li></ol></div></div><div class="dataGrid" style="margin-top:18px"><div class="risk">风险：如果 25 分钟没有被有效利用，PH 的价格优势不会转化为家长感知价值。若直接开放 PU 给老师但没有训练语法解释、发音纠错和课堂控制，可能带来教学质量投诉。</div><div class="strategy">策略：先把 PH 的价值包装清楚，再围绕课件设计、老师执行、学生链路和课前提醒四个维度提升试听体验。PU 可以做，但必须配套老师准入、专项培训和试点监控。</div></div></section>
-<section id="data"><div class="sectionHead"><div><div class="hgroup"><span class="badge">02</span><h2>同纬度数据对比：点击数据点查看风险与原因</h2></div><div class="line"></div></div><p class="sub">关键数据标签呈现：数据结果、原因、风险与管理判断。</p></div><div class="dataGrid"><div class="card"><h3>课程类型 × 老师类型</h3><table class="matrix" id="matrix"><thead><tr><th>课程类型</th><th>PH（Panda）</th><th>欧美</th><th>北美</th></tr></thead><tbody><tr><td>自研课</td><td data-key="ph-self" class="active"><span class="score low">7.30%</span></td><td data-key="eu-self"><span class="score good">18.94%</span></td><td data-key="na-self"><span class="score watch">12.19%</span></td></tr><tr><td>Power Up</td><td data-key="ph-pu"><span class="score empty">—</span></td><td data-key="eu-pu"><span class="score watch">13.74%</span></td><td data-key="na-pu"><span class="score watch">12.11%</span></td></tr><tr><td>RH</td><td data-key="ph-rh"><span class="score empty">—</span></td><td data-key="eu-rh"><span class="score empty">—</span></td><td data-key="na-rh"><span class="score good">25.12%</span></td></tr></tbody></table><p>提示：红色为当前风险点，黄色为需验证，绿色为相对优势。点击每个数据点看原因。</p></div><div class="detailCard" id="detailCard"><h3>PH（Panda）自研课</h3><div class="detailRate">7.30%</div><span class="detailStatus low">风险高：当前提升对象</span><p><strong>原因判断：</strong>PH（Panda）目前只教自研课，但转化明显低于欧美和北美老师。问题不一定只是教材，而是家长尚未感知到“25分钟有效真人练习”的价值。</p><p><strong>管理结论：</strong>必须同时优化课件设计、老师执行、学生链路和课前提醒，不能只靠换教材。</p></div></div></section>
-<section id="diagnosis"><div class="sectionHead"><div><div class="hgroup"><span class="badge">03</span><h2>四维诊断：教学与服务如何共同提升转化</h2></div><div class="line"></div></div><p class="sub">蓝/橙/绿判断框均沉淀对应证据，支撑竞品优势、LingoAce差距与可控策略。</p></div><div class="tabs"><button class="tabBtn active" data-panel="course"><strong>课件设计</strong><span>单页练习深度与开口次数</span></button><button class="tabBtn" data-panel="teacher"><strong>老师执行</strong><span>TPR、提问、理解学生</span></button><button class="tabBtn" data-panel="student"><strong>学生链路</strong><span>CC 信息传递到老师侧</span></button><button class="tabBtn" data-panel="reminder"><strong>课前提醒</strong><span>服务系统与家长触达</span></button></div>
-<div class="panel active" id="panel-course"><div class="box"><h3>竞品优势</h3><ol><li>Polly / 51Talk 课件约 30-40 页。</li><li>单页停留更久，孩子练习深度更高。</li><li>用动画、实物图片、拆音、奖励反馈反复强化同一个词。</li></ol><div class="miniEvidence"><label>上传竞品素材<input class="miniUpload" type="file" accept="image/*,video/*"></label><div class="preview"><div class="mediaHolder"><button class="clearMedia" type="button">删除</button><video src="assets/media_01.mp4" controls=""></video></div></div></div></div><div class="box"><h3>LingoAce 当前差距</h3><ol><li>LingoAce 课件约 40-60 页，页面密度更高。</li><li>高频换页导致单词重复深度不足。</li><li>部分游戏消耗时间，但没有提升有效开口次数。</li></ol><div class="miniEvidence"><label>上传 LingoAce 素材<input class="miniUpload" type="file" accept="image/*,video/*"></label><div class="preview"><div class="mediaHolder"><button class="clearMedia" type="button">删除</button><video src="assets/media_02.mp4" controls=""></video></div></div></div></div><div class="box"><h3>可控策略</h3><ol><li>Plan A：调整课件，限制低效游戏，提高开口次数。</li><li>Plan B：课件短期不改时，通过培训让老师在单页加深练习。</li><li>建立 Student Speaking Turns 指标。</li></ol></div></div>
-<div class="panel" id="panel-teacher"><div class="box"><h3>竞品优势</h3><ol><li>老师会用拆分音节、拍手节奏和肢体辅助。</li><li>老师会判断孩子重复时是否真的理解，并及时调整。</li><li>老师的问题围绕课堂目标层层递进，引导孩子完成最终输出。</li></ol><div class="miniEvidence"><label>上传竞品素材<input class="miniUpload" type="file" accept="image/*,video/*"></label><div class="preview"><div class="mediaHolder"><button class="clearMedia" type="button">删除</button><video src="assets/media_03.mp4" controls=""></video></div></div></div></div><div class="box"><h3>LingoAce 当前差距</h3><ol><li>部分 PH 老师不清楚什么是有效 TPR。</li><li>部分老师不清楚什么是有效问题，也不一定能判断孩子是否真正理解。</li><li>问题设计没有层层递进到最终输出。</li></ol><div class="miniEvidence"><label>上传课堂素材<input class="miniUpload" type="file" accept="image/*,video/*"></label><div class="preview"><div class="mediaHolder"><button class="clearMedia" type="button">删除</button><video src="assets/media_04.mp4" controls=""></video></div></div></div></div><div class="box"><h3>可控策略</h3><ol><li>培训材料：讲清楚有效 TPR、有效问题、理解学生。</li><li>Workshop：用真实课堂组织和讨论，示范如何更快帮助孩子输出。</li><li>问题设计：围绕课堂目标层层递进，让每个问题导向最终输出。</li></ol></div></div>
-<div class="panel" id="panel-student"><div class="box"><h3>竞品优势</h3><ol><li>课前会把学生背景同步给老师。</li><li>信息包括年龄、性别、性格、家长期待和学习目标。</li><li>老师可在 App 或老师端直接查看。</li></ol><div class="miniEvidence"><label>上传竞品素材<input class="miniUpload" type="file" accept="image/*,video/*"></label><div class="preview"><div class="mediaHolder"><button class="clearMedia" type="button">删除</button><img src="assets/media_05.png" alt="evidence"></div></div></div></div><div class="box"><h3>LingoAce 当前差距</h3><ol><li>CC 与家长沟通的信息传递到老师侧链路较长。</li><li>老师课前不一定能快速看到关键学生信息。</li><li>课前准备不稳定，会影响课堂匹配度。</li></ol><div class="miniEvidence"><label>上传流程素材<input class="miniUpload" type="file" accept="image/*,video/*"></label><div class="preview"><div class="mediaHolder"><button class="clearMedia" type="button">删除</button><img src="assets/media_06.png" alt="evidence"></div></div></div></div><div class="box"><h3>可控策略</h3><ol><li>CC 信息结构化传给老师。</li><li>提炼年龄、性别、性格、家长期待、学习目标。</li><li>老师上试听前必须阅读学生信息。</li></ol></div></div>
-<div class="panel" id="panel-reminder"><div class="box"><h3>竞品优势</h3><ol><li>Polly 会在课前 30 分钟、15 分钟提醒家长。</li><li>提醒方式包括 AI 或电话直接触达。</li><li>若孩子课前 5 分钟仍未进入教室，会继续触达。</li></ol><div class="miniEvidence"><label>上传竞品素材<input class="miniUpload" type="file" accept="image/*,video/*"></label><div class="preview"><div class="mediaHolder"><button class="clearMedia" type="button">删除</button><img src="assets/media_07.png" alt="evidence"></div></div></div></div><div class="box"><h3>LingoAce 当前差距</h3><ol><li>当前缺少稳定的自动课前提醒。</li><li>学生未及时进教室会损失试听机会。</li><li>也会影响老师利用率和后续转化。</li></ol><div class="miniEvidence"><label>上传现状素材<input class="miniUpload" type="file" accept="image/*,video/*"></label><div class="preview">图片/视频预览</div></div></div><div class="box"><h3>可控策略</h3><ol><li>评估 30/15/5 分钟提醒机制。</li><li>优先给 Panda 试听课试点。</li><li>把 no-show 数据纳入转化复盘。</li></ol></div></div>
-</section>
-<section id="pu"><div class="sectionHead"><div><div class="hgroup"><span class="badge">04</span><h2>PU 承接评估：机会存在，但必须先证明老师能讲好</h2></div><div class="line"></div></div><p class="sub">PU 可以给销售教材背书，但不是自动提升转化的工具。</p></div><div class="decision"><div class="card ok"><h3>PU 的机会</h3><ul><li>给销售更强的话术抓手，家长更容易理解教材价值。</li><li>补足 Panda “高性价比但缺少长期学习背书”的问题。</li><li>如果老师讲得好，可以提升家长对 PH 的信任。</li></ul></div><div class="card bad"><h3>PH 老师承接风险</h3><ul><li>PU 语法线更强，老师解释不清会增加投诉。</li><li>PU 市场可选择性强，不一定形成独家卖点。</li><li>如果只是换教材但不培训老师，转化不一定提升。</li></ul></div></div><div class="card" style="margin-top:18px"><h3>具体建议</h3><ol><li>从 Panda 里筛选高试听转化、高学生稳定转化的 PH 老师。</li><li>做 PU 专项 training：语法解释、发音纠错、课堂控制、家长反馈。</li><li>给老师 PU trial script，避免老师自由发挥导致质量不稳定。</li><li>小规模试点 2-4 周，同时看转化、投诉、家长反馈和老师执行质量。</li></ol></div></section>
-<section id="timeline"><div class="sectionHead"><div><div class="hgroup"><span class="badge">05</span><h2>Next Step Timeline</h2></div><div class="line"></div></div><p class="sub">本周先确认目标、标准和协作链路；下周开始执行。</p></div><div class="timeline"><div class="timeCard"><span class="timeRange">7/27 - 7/31</span><h3>This week: Confirm</h3><ol><li>确认 +2pp 转化目标、转化定义和看板监控口径。</li><li>确认优化范围和标准：老师准入、卖点包装、PU 上线节奏、课件是否可调。</li><li>确认学生链路和培训材料：与 CC、培训、产品对齐需要交付什么、何时交付。</li></ol></div><div class="timeCard"><span class="timeRange">8/3 - 8/7</span><h3>Next week: Execute</h3><ol><li>按本周确定标准筛选老师，并安排培训节奏。</li><li>推进学生信息链路可行性验证，让老师课前能看到关键信息。</li><li>开始执行培训材料和课堂示范，验证老师如何讲、如何纠错、如何引导输出。</li></ol></div><div class="timeCard"><span class="timeRange">Pilot Week</span><h3>Teacher Trial Review</h3><ol><li>选一组老师完成培训后试跑一周。</li><li>观察这些老师的 PU 和自研课课堂表现。</li><li>提取转化、投诉、课堂执行、家长反馈等数据，形成是否扩大试点的标准。</li></ol></div></div></section>
-</main>
-<div class="mediaModal" id="mediaModal"><div class="modalInner"><button class="modalClose" id="modalClose" type="button">×</button><div id="modalContent"></div></div></div>
-<script>
-const sideNav=document.getElementById('sideNav');const navToggle=document.getElementById('navToggle');
-if(sideNav&&navToggle){navToggle.addEventListener('click',e=>{e.stopPropagation();sideNav.classList.toggle('collapsed')});let drag=false,sx=0,sy=0,sl=0,st=0;sideNav.addEventListener('pointerdown',e=>{if(e.target.tagName==='A'||e.target.id==='navToggle')return;drag=true;sideNav.classList.add('dragging');sideNav.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;sl=sideNav.offsetLeft;st=sideNav.offsetTop});sideNav.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-sx,dy=e.clientY-sy;const maxL=window.innerWidth-sideNav.offsetWidth-12,maxT=window.innerHeight-sideNav.offsetHeight-12;sideNav.style.left=Math.max(12,Math.min(maxL,sl+dx))+'px';sideNav.style.top=Math.max(12,Math.min(maxT,st+dy))+'px'});sideNav.addEventListener('pointerup',e=>{drag=false;sideNav.classList.remove('dragging');try{sideNav.releasePointerCapture(e.pointerId)}catch(_){}})}
-document.querySelectorAll('.tabBtn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.tabBtn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+btn.dataset.panel).classList.add('active')})});
-const detailData={};
-detailData['ph-self']=['PH（Panda）自研课','7.30%','low','风险高：当前提升对象','PH 价格最低，约 30-40 RMB/课，但目前家长尚未充分感知到 25 分钟真人练习的有效性。低转化不只是教材问题，也和老师执行、课堂有效开口、学生链路有关。','必须把 PH 从“低价课”包装成高性价比真人练习方案，并同步优化四维体验。'];
-detailData['eu-self']=['欧美自研课','18.94%','good','表现高：价格与质量更平衡','欧美老师价格约 80-90 RMB/课，低于北美且老师质量明显高于 PH。对家长来说，自研课场景下欧美老师的性价比更容易被接受，所以转化更高。','PH 需要证明自己虽更便宜，但每一分钟也能被有效利用。'];
-detailData['na-self']=['北美自研课','12.19%','watch','中等：质量高但价格更高','北美老师价格约 90-100 RMB/课，教学质量有优势，但价格更高。自研课不是强稀缺产品时，家长可能转向欧美老师。','这解释了为什么欧美自研课优于北美自研课，也提醒 PH 必须突出自己的价格和练习价值。'];
-detailData['ph-pu']=['PH（Panda）Power Up','—','watch','未开放：待试点','PH 目前未开放 PU，不能直接假设 PU 会提升 PH 转化。','建议先筛选高转化老师做小规模试点。'];
-detailData['eu-pu']=['欧美 Power Up','13.74%','watch','需验证：不高于欧美自研课','Power Up 市场可选择性强，线上线下机构都可以讲。家长如果只是想做 PU 追加练习，会更看重性价比，因此欧美比北美更有优势，但仍没有高过欧美自研课。','PU 不是天然转化解法，需要靠老师执行和销售话术证明价值。'];
-detailData['na-pu']=['北美 Power Up','12.11%','watch','需验证：价格压力更明显','北美老师质量高但价格更高，而 PU 并不稀缺，家长可选择很多线上线下机构。高价格不一定带来更高转化。','PU 给 PH 做可以有机会，但前提是 PH 老师能讲清楚、练充分、少投诉。'];
-detailData['na-rh']=['北美 RH','25.12%','good','高表现：稀缺性强','RH 转化高有特殊性：北美老师质量高，同时 RH 在市场上的可替代选择较少，很多机构不敢教或不能教。高质量老师 + 低可替代性共同推高转化。','RH 不能直接证明 PU 也会有效，因为 PU 的市场可选择性更强。'];
-['ph-rh','eu-rh'].forEach(k=>detailData[k]=['不适用','—','watch','无当前数据','该组合当前不适用或无数据。','不作为本次判断重点。']);
-document.querySelectorAll('#matrix td[data-key]').forEach(td=>{td.addEventListener('click',()=>{document.querySelectorAll('#matrix td[data-key]').forEach(x=>x.classList.remove('active'));td.classList.add('active');const d=detailData[td.dataset.key];document.getElementById('detailCard').innerHTML=`<h3>${d[0]}</h3><div class="detailRate">${d[1]}</div><span class="detailStatus ${d[2]}">${d[3]}</span><p><strong>原因判断：</strong>${d[4]}</p><p><strong>管理结论：</strong>${d[5]}</p>`})});
-document.querySelectorAll('.miniUpload').forEach(input=>{input.addEventListener('change',()=>{const file=input.files&&input.files[0];if(!file)return;const preview=input.closest('.miniEvidence').querySelector('.preview');const reader=new FileReader();reader.onload=()=>{const src=reader.result;if(file.type.startsWith('video/')){preview.innerHTML=`<div class="mediaHolder"><button class="clearMedia" type="button">删除</button><video src="${src}" controls></video></div>`}else if(file.type.startsWith('image/')){preview.innerHTML=`<div class="mediaHolder"><button class="clearMedia" type="button">删除</button><img src="${src}" alt="evidence"></div>`}else{preview.textContent=file.name}input.value=''};reader.readAsDataURL(file)})});
-document.addEventListener('click',e=>{if(e.target.classList.contains('clearMedia')){e.stopPropagation();const p=e.target.closest('.preview');p.innerHTML='图片/视频预览';return}const media=e.target.closest('.preview img,.preview video');if(media){const modal=document.getElementById('mediaModal');const content=document.getElementById('modalContent');if(media.tagName==='VIDEO'){content.innerHTML=`<video src="${media.currentSrc||media.src}" controls autoplay></video>`}else{content.innerHTML=`<img src="${media.src}" alt="evidence enlarged">`}modal.classList.add('active')}});
-document.getElementById('modalClose').addEventListener('click',()=>{document.getElementById('mediaModal').classList.remove('active');document.getElementById('modalContent').innerHTML=''});
-document.getElementById('mediaModal').addEventListener('click',e=>{if(e.target.id==='mediaModal'){document.getElementById('mediaModal').classList.remove('active');document.getElementById('modalContent').innerHTML=''}});
-document.getElementById('savePage').addEventListener('click',()=>{const html='<!DOCTYPE html>\\n'+document.documentElement.outerHTML;const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='PH_Panda_Trial_Report_with_Evidence.html';a.click();URL.revokeObjectURL(a.href)});
-</script>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <button id="nav-fab" class="nav-fab" type="button" aria-expanded="false" aria-controls="nav-drawer">导航</button>
+  <button id="todo-fab" class="todo-fab" type="button" aria-expanded="false" aria-controls="todo-drawer">待办</button>
+  <aside id="nav-drawer" class="nav-drawer" aria-hidden="true">
+    <div class="nav-drawer-head">
+      <h3>快速导航</h3>
+      <button id="nav-close" class="nav-close" type="button" aria-label="关闭导航">关闭</button>
+    </div>
+    <div class="nav-drawer-body">
+      <button class="nav-item" type="button" data-nav-target="goal-redline">01 Goal + 红线</button>
+      <button class="nav-item" type="button" data-nav-target="narrative-gate">02 价值叙事</button>
+      <button class="nav-item" type="button" data-nav-target="compare-matrix">03 同纬度数据</button>
+      <button class="nav-item" type="button" data-nav-target="phase-action" data-phase-target="before">04A 课前模板</button>
+      <button class="nav-item" type="button" data-nav-target="phase-action" data-phase-target="during">04B 课中模板</button>
+      <button class="nav-item" type="button" data-nav-target="phase-action" data-phase-target="after">04C 课后模板</button>
+      <button class="nav-item" type="button" data-nav-target="priority-plan">05 P0 / P1 / P2</button>
+    </div>
+  </aside>
 
+  <aside id="todo-drawer" class="todo-drawer" aria-hidden="true">
+    <div class="todo-drawer-head">
+      <h3>会议跟进 To-do</h3>
+      <button id="todo-close" class="nav-close" type="button" aria-label="关闭待办">关闭</button>
+    </div>
+    <div class="todo-drawer-body" id="todo-panel"></div>
+  </aside>
+  <header class="hero shell" id="goal-redline">
+    <div class="brand-row">
+      <img src="logo-lingoace.svg" alt="LingoAce" class="brand-logo" />
+      <div class="chip">PH Panda Trial Conversion Program</div>
+    </div>
+    <h1>PH Panda 试听专项汇报</h1>
+    <p class="subtitle">总目标：在质量保证（4HAI ≤ 1.00%，投诉 ≤ 1.00%）前提下，PH 自研 Panda 试听转化提升至 10%+，PU 首月转化稳定 8%+，新签 M1 未留存控制在 &lt;7.08%。</p>
+    <p class="contract-inline">口径小字：4HAI = (迟到 + 早退 + TC24 + 旷课) / 总课节（ESL 全外教，自然月）；转化口径按月度 cohort 连续追踪；新签 M1 未留存按同 cohort 统计。</p>
 
-</body></html>
+    <div class="hero-grid">
+      <article class="hero-card goal">
+        <h3>阶段目标</h3>
+        <p class="hero-inline-kpis"><span class="metric-red">自研 10%+</span><span class="metric-red">PU 首月 8%+</span></p>
+        <p><span class="text-orange">4HAI ≤ 1.00%</span>，<span class="text-orange">新签 M1 未留存 &lt; 7.08%</span></p>
+      </article>
+      <article class="hero-card stage-metric-card">
+        <h3>阶段指标模板（大）/ 当前（小）</h3>
+        <div class="stage-metric-grid">
+          <div class="stage-metric-item">
+            <p class="stage-metric-label">PH 自研 Panda 转化</p>
+            <p class="stage-metric-target">10%+</p>
+            <p class="stage-metric-current">当前：7.23%</p>
+          </div>
+          <div class="stage-metric-item">
+            <p class="stage-metric-label">ESL-PU 转化</p>
+            <p class="stage-metric-target">8%+</p>
+            <p class="stage-metric-current">当前：11.34%</p>
+          </div>
+          <div class="stage-metric-item">
+            <p class="stage-metric-label">4HAI</p>
+            <p class="stage-metric-target">≤1.00%</p>
+            <p class="stage-metric-current">当前：1.22%</p>
+          </div>
+          <div class="stage-metric-item">
+            <p class="stage-metric-label">新签 M1 未留存</p>
+            <p class="stage-metric-target">&lt;7.08%</p>
+            <p class="stage-metric-current">当前：7.08%</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="kpi-row">
+      <article class="kpi-card p0"><h3>P0</h3><p class="kpi kpi-mini">先打最短链路</p><p class="hint">课前全链路准备 / 课中引导标准化 / 开口频次落地</p></article>
+      <article class="kpi-card p1"><h3>P1</h3><p class="kpi kpi-mini">再做增强能力</p><p class="hint">智能定级 / 自动学生标签 / 个性化 AI 课后报告</p></article>
+      <article class="kpi-card p2"><h3>P2</h3><p class="kpi kpi-mini">探索个性突破</p><p class="hint">高光瞬间自动抓取 / 更强个性化推荐 / 体验升级</p></article>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="section" id="narrative-gate">
+      <div class="section-head">
+        <h2>价值叙事（优势 / 未包装价值 / PU 承接闸门）</h2>
+        <p>先统一“为什么家长会买”，再进入动作执行；PU 先试点验证，不直接全量铺开。</p>
+      </div>
+      <div class="narrative-grid">
+        <article class="narrative-card good">
+          <h3>我们已有优势</h3>
+          <ul>
+            <li>价格带更有优势，家长试错成本低。</li>
+            <li>排课和课消更灵活，决策门槛低。</li>
+            <li>外教上课 + 中教答疑，双师服务承接更完整。</li>
+          </ul>
+        </article>
+        <article class="narrative-card gap">
+          <h3>尚未被包装的价值</h3>
+          <ul>
+            <li>家长核心关注是“25 分钟是否有效练习”。</li>
+            <li>是否持续检查理解、是否引导更多开口。</li>
+            <li>课堂不能只热闹，要有可见学习结果。</li>
+          </ul>
+        </article>
+        <article class="narrative-card gate">
+          <h3>PU 承接评估闸门</h3>
+          <ul class="gate-list">
+            <li>准入：仅筛选高转化且低投诉 PH 老师。</li>
+            <li>训练：语法解释、发音纠错、课堂控制、反馈脚本。</li>
+            <li>试点：2-4 周小规模，达标再放量。</li>
+            <li>达标：转化、投诉、家长反馈、执行质量四项同时看。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="compare-matrix">
+      <div class="section-head">
+        <h2>同纬度数据对比：点击数据点查看风险与原因</h2>
+        <p>关键数据标签呈现：数据结果、原因、风险与管理判断。</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-matrix" id="compare-grid"></div>
+        <article class="risk-detail" id="risk-detail"></article>
+      </div>
+      <div class="benchmark-price-wrap" id="benchmark-price-content"></div>
+      <div class="signal-strip">
+        <p><strong>转化抓手原则：</strong>销售建联是转化抓手，物料是信任放大器；家长必须看见学生开口状态与复述频次。</p>
+        <p><strong>当前修正：</strong>视频开口次数监控存在偏差，建议改用“有效沟通时长 + 学生主动提问 + 课堂练习正确率”三指标并联。</p>
+        <p><strong>课后表达：</strong>建议家长反馈采用“汉堡包表达法”：先肯定亮点，再说问题，最后给出解决路径与下一步计划。</p>
+      </div>
+    </section>
+
+    <section class="section" id="phase-action">
+      <div class="section-head">
+        <h2>课前 / 课中 / 课后 竞品 VS LingoACE对比：</h2>
+        <p>竞品做法｜LingoACE 现状｜跨部门落地动作 + 关键指标；动作区按课件、老师、学生链路、课前提醒四维对齐。</p>
+        <p class="tiny-note">执行主线：销售建联先解决家长问题，物料用于放大信任；每节课固定 2-3 标准互动案例，逐页沉淀授课亮点。</p>
+      </div>
+      <div class="process-flow" aria-label="试听转化闭环流程图">
+        <article class="flow-node">
+          <h3>课前</h3>
+          <p>触达与预习</p>
+          <small>AI 外呼 + 双语预习 + 定级问卷</small>
+        </article>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <article class="flow-node">
+          <h3>课中</h3>
+          <p>开口与理解</p>
+          <small>动画减负 + 标准指令 + TPR 训练</small>
+        </article>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <article class="flow-node">
+          <h3>课后</h3>
+          <p>反馈与跟进</p>
+          <small>AI 报告 + 30 分钟跟进 + 转化复盘</small>
+        </article>
+      </div>
+      <div class="mode-row">
+        <span class="mode-label">显示模式</span>
+        <button id="mode-toggle" class="mode-btn" type="button" aria-pressed="false">切换到编辑模式</button>
+      </div>
+      <div class="tabs" role="tablist" aria-label="阶段切换">
+        <button class="tab active" data-phase="before" role="tab" aria-selected="true">课前</button>
+        <button class="tab" data-phase="during" role="tab" aria-selected="false">课中</button>
+        <button class="tab" data-phase="after" role="tab" aria-selected="false">课后</button>
+      </div>
+      <div id="phase-panel" class="phase-panel" aria-live="polite"></div>
+    </section>
+
+    <section class="section" id="priority-plan">
+      <div class="section-head">
+        <h2>P0 / P1 阶段规划摘要</h2>
+        <p>P0：优先落地，直接拉动试听转化；P1：能力扩展；P2：探索个性突破。</p>
+      </div>
+      <div class="priority-grid">
+        <article class="priority-card p0">
+          <h3>P0（优先落地）</h3>
+          <ul>
+            <li>课前物料迭代、AI 外呼、标准化定级问卷</li>
+            <li>课中课件优化、外教标准化授课培训</li>
+            <li>课后基础 AI 报告能力落地</li>
+          </ul>
+        </article>
+        <article class="priority-card p1">
+          <h3>P1（能力扩展）</h3>
+          <ul>
+            <li>智能定级系统</li>
+            <li>学员自动标签体系</li>
+            <li>完整个性化 AI 学习报告</li>
+          </ul>
+        </article>
+        <article class="priority-card p2">
+          <h3>P2（探索突破）</h3>
+          <ul>
+            <li>课堂高光瞬间自动捕捉</li>
+            <li>更细粒度个性化推荐</li>
+            <li>家长侧体验增强与内容包装升级</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <p>PH Panda Trial Report - Draft v2</p>
+    <p>定位：高管汇报 + 产品评审一体化初稿，支持图片、视频和模块化迭代。</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" id="lightbox-close">关闭</button>
+    <div class="lightbox-body" id="lightbox-body"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
