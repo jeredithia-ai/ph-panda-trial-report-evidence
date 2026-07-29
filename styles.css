@@ -783,6 +783,25 @@ p { margin: 0; line-height: 1.6; }
   font-weight: 800;
 }
 
+.phase-execution-widget {
+  margin-top: 10px;
+  border: 1px solid #d7e3ff;
+  border-radius: 10px;
+  background: #f8fbff;
+  padding: 8px;
+}
+
+.phase-execution-widget h5 {
+  font-size: 13px;
+  color: #264ca8;
+}
+
+.phase-execution-note {
+  margin-top: 4px;
+  color: #5670a1;
+  font-size: 12px;
+}
+
 .p0-top-widget {
   margin-top: 10px;
   border: 1px solid #d7e3ff;
